@@ -33,6 +33,9 @@
 <div class="container">
     <h1 class="title">BLOG - REFDEV</h1>
     @foreach ($posts as $post)
+    @php
+        ($post = explode(",", $post))
+    @endphp
         <div class="card mb-3 mt-5" style="max-width: 100%;">
             <div class="row g-0">
                 <div class="col-md-4">
@@ -40,9 +43,9 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h5 class="card-title">{{ $post[0] }}</h5>
-                        <p class="card-text">{{ $post[1] }}</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        <h5 class="card-title">{{ $post[1] }}</h5>
+                        <p class="card-text">{{ $post[2] }}</p>
+                        <p class="card-text"><small class="text-muted">Last Update {{ date("d M Y H:i", strtotime($post[3])) }}</small></p>
                     </div>
                 </div>
             </div>

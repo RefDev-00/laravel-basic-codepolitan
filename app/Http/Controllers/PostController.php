@@ -16,13 +16,8 @@ class PostController extends Controller
     {
         $post_storage = Storage::get('posts.txt');
         $post_storage = explode("\n", $post_storage);
-        dd($post_storage);
-        exit;
         $post_blog = [
-            "posts" => [
-                ["Laravel Tutorial", "Ini adalah materi mengenai Laravel"],
-                ["Flutter Tutorial", "Ini adalah materi mengenai Flutter"]
-            ]
+            "posts" => $post_storage
         ];
         return view('posts.index', $post_blog);
     }
@@ -56,7 +51,7 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        echo "Ini Halaman Detail Post dengan ID : $id";
+        return view('posts.show');
     }
 
     /**
