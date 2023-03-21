@@ -31,7 +31,8 @@
     </style>
 </head>
 <div class="container">
-    <h1 class="title">BLOG - REFDEV</h1>
+    <h1 class="title"><u>BLOG - REFDEV</u></h1>
+    <hr>
     @foreach ($posts as $post)
     @php
         ($post = explode(",", $post))
@@ -46,6 +47,7 @@
                         <h5 class="card-title">{{ $post[1] }}</h5>
                         <p class="card-text">{{ $post[2] }}</p>
                         <p class="card-text"><small class="text-muted">Last Update {{ date("d M Y H:i", strtotime($post[3])) }}</small></p>
+                    <a href="{{ url("post/$post[0]") }}" class="btn btn-primary">Selengkapnya</a>
                     </div>
                 </div>
             </div>
