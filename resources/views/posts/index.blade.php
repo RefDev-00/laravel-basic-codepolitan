@@ -33,6 +33,7 @@
 <div class="container">
     <h1 class="title"><u>BLOG - REFDEV</u></h1>
     <hr>
+    <a href="{{ url('post/create') }}" class="btn btn-primary">Tambah </a>
     @foreach ($posts as $post)
     @php
         ($post = explode(",", $post))

@@ -29,7 +29,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('posts.create');
     }
 
     /**
@@ -40,7 +40,25 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $judul = $request->input('judul');
+        $content = $request->input('content');
+
+        $post_storage = Storage::get('posts.txt');
+        $post_storage = explode("\n", $post_storage);
+
+        $new_post = [
+            count($post_storage) + 1,
+            $judul,
+            $content,
+            date('Y-m-d H:i:s')
+        ];
+        $new_post = implode(',', $new_post);
+        array_push($post_storage, $new_post);
+        $post_storage = implode("\n", $post_storage);
+
+        Storage::write('posts.txt',$post_storage);
+
+        return redirect('post');
     }
 
     /**
