@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Post | Detail {{ $post[1] }}</title>
+    <title>Post | Detail {{ $post->title }}</title>
 
     {{-- link css --}}
     <link href="{{ asset('bootstrap-5/css/bootstrap.min.css') }}" rel="stylesheet"
@@ -37,11 +37,11 @@
         <h2 class="title"><u>Halaman Detail Blog</u></h2>
         <hr>
         <article class="blog-post">
-            <h4 class="blog-post-title">{{ $post[1] }}</h4>
-            <p class="blog-post-meta">Last Update {{ date('d M Y H:i', strtotime($post[3])) }}</p>
-            <p>{{ $post[2] }}</p>
+            <h4 class="blog-post-title">{{ $post->title }}</h4>
+            <p class="blog-post-meta">Last Update {{ date('d M Y H:i', strtotime($post->created_at)) }}</p>
+            <p>{{ $post->content }}</p>
             <hr>
-            <a href="{{ url('post') }}" class="btn btn-primary">Kembali</a>
+            <a href="{{ url('post') }}" class="btn btn-danger">Kembali</a>
         </article>
     </div>
 </body>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -14,12 +15,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $post_storage = Storage::get('posts.txt');
-        $post_storage = explode("\n", $post_storage);
-        $post_blog = [
-            "posts" => $post_storage
-        ];
-        return view('posts.index', $post_blog);
+        $posts = DB::table('post')->get();
+        return view('posts.index', ['post' => $posts]);
     }
 
     /**
@@ -40,23 +37,15 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $judul = $request->input('judul');
+        $title = $request->input('title');
         $content = $request->input('content');
 
-        $post_storage = Storage::get('posts.txt');
-        $post_storage = explode("\n", $post_storage);
-
-        $new_post = [
-            count($post_storage) + 1,
-            $judul,
-            $content,
-            date('Y-m-d H:i:s')
-        ];
-        $new_post = implode(',', $new_post);
-        array_push($post_storage, $new_post);
-        $post_storage = implode("\n", $post_storage);
-
-        Storage::write('posts.txt',$post_storage);
+        DB::table('post')->insert([
+            'title' => $title,
+            'content' => $content,
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
+        ]);
 
         return redirect('post');
     }
@@ -69,18 +58,12 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post_storage = Storage::get('posts.txt');
-        $post_storage = explode("\n", $post_storage);
-        $selected_post = [];
-        foreach ($post_storage as $post) {
-            $post = explode(",", $post);
-            if ($post[0] == $id) {
-                $selected_post = $post;
-            }
-        }
-        $view_data = [
-            "post" => $selected_post
-        ];
+        $post = DB::table('post')
+            ->select('id', 'title', 'content', 'created_at', 'updated_at')
+            ->where('id', '=', $id)
+            ->first();
+
+        $view_data = ['post' => $post];
         return view('posts.show', $view_data);
     }
 

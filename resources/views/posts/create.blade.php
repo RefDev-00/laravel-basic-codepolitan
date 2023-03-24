@@ -23,8 +23,8 @@
     <form action="{{ url('post') }}" method="POST" class="form-control">
         @csrf
         <div>
-            <label for="judul" class="form-label">Judul :</label>
-            <input type="text" class="form-control" name="judul" id="judul" required>
+            <label for="title" class="form-label">Title :</label>
+            <input type="text" class="form-control" name="title" id="title" required>
         </div>
         <div class="mb-3">
             <label for="content" class="form-label">Content :</label>
