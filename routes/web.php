@@ -18,4 +18,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Route Post
 Route::resource('post', PostController::class);
