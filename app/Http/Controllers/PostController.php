@@ -16,7 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::where('active', true)->get();
+        $posts = Post::where('active', true)->withTrashed()->get();
 
         return view('posts.index', ['post' => $posts]);
     }
