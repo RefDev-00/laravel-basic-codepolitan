@@ -21,4 +21,16 @@ class Post extends Model
     {
         return $query->where('active', true);
     }
+    // Membuat function sendiri
+    public function total_comments()
+    {
+        return $this->comments()->count();
+    }
+
+    //relasi ke database comment
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }
