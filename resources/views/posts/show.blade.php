@@ -1,37 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Post | Detail {{ $post->title }}</title>
-
-    {{-- link css --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    {{-- link js --}}
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <style>
-        small {
-            color: grey
-        }
-
-        .title {
-            text-align: center;
-        }
-
-        .mydiv {
-            border: 2px;
-            background-color: lightcyan;
-            text-align: justify;
-        }
-    </style>
-</head>
-
-<body>
+@section('content')
     <div class="container">
         <h2 class="title"><u>Halaman Detail Blog</u></h2>
         <hr>
@@ -57,6 +26,4 @@
             </form>
         </article>
     </div>
-</body>
-
-</html>
+@endsection

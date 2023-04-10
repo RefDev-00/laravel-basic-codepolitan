@@ -92,7 +92,7 @@ h6 {
 }
 .blog-post-title {
     margin-bottom: 0.25rem;
-    font-size: 2.0rem;
+    font-size: 2rem;
 }
 .blog-post-meta {
     margin-bottom: 1.25rem;
@@ -111,4 +111,18 @@ h6 {
 }
 .blog-footer p:last-child {
     margin-bottom: 0;
+}
+
+small {
+    color: grey;
+}
+
+.title {
+    text-align: center;
+}
+
+.mydiv {
+    border: 2px;
+    background-color: lightcyan;
+    text-align: justify;
 }
