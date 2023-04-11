@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,9 +17,13 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::where('active', true)->withTrashed()->get();
+        if (!Auth::check()) {
+            return redirect('login');
+        } else {
+            $posts = Post::where('active', true)->withTrashed()->get();
 
-        return view('posts.index', ['post' => $posts]);
+            return view('posts.index', ['post' => $posts]);
+        }
     }
 
     /**
@@ -28,6 +33,9 @@ class PostController extends Controller
      */
     public function create()
     {
+        if (!Auth::check()) {
+            return redirect('login');
+        }
         return view('posts.create');
     }
 
@@ -60,6 +68,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
+        if (!Auth::check()) {
+            return redirect('login');
+        }
         $post = Post::where('id', $id)->first();
         $comments = $post->comments()->limit(2)->get();
         $total_comments = $post->total_comments();
@@ -76,9 +87,12 @@ class PostController extends Controller
      */
     public function edit($id)
     {
+        if (!Auth::check()) {
+            return redirect('login');
+        }
         $post = Post::where('id', '=', $id)->first();
 
-        
+
         return view('posts.edit', ['post' => $post]);
     }
 
@@ -112,6 +126,9 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
+        if (!Auth::check()) {
+            return redirect('login');
+        }
         Post::where('id', $id)
             ->delete();
 

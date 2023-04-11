@@ -22,8 +22,11 @@
             </form>
 
             <div class="text-end">
-                <button type="button" class="btn btn-outline-light me-2">Login</button>
-                <button type="button" class="btn btn-warning">Sign-up</button>
+                @if (!Auth::check())
+                    <a href="{{ url('login') }}" class="btn btn-outline-light me-2">Login</a>
+                @else
+                    <a href="{{ url('logout') }}" class="btn btn-outline-light me-2">Logout</a>
+                @endif
             </div>
         </div>
     </div>
